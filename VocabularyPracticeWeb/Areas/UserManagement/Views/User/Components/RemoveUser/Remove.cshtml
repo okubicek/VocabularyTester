@@ -20,20 +20,20 @@
         <div class="card-header">User Details</div>
         <div class="card-body">
             <info-message />
-            <div class="form-group">
+            <div class="form-group row">
                 <input type="hidden" asp-for="UserId">
                 <label asp-for="Email" class="col-form-label col-md-4"></label>
                 <p class="form-control-plaintext col-md-8">@Model.Email</p>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="FirstName" class="col-form-label col-md-4"></label>
                 <p class="form-control-plaintext col-md-8">@Model.FirstName</p>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="Surname" class="col-form-label col-md-4"></label>
                 <p class="form-control-plaintext col-md-8">@Model.Surname</p>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="IsLocked" class="col-form-label col-md-4"></label>
                 <p class="form-control-plaintext col-md-8">@(Model.IsLocked ? "Yes" : "No")</p>
             </div>
