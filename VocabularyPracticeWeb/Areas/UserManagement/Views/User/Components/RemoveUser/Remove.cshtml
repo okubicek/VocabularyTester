@@ -1,0 +1,51 @@
+﻿@model VocabularyPracticeWeb.Models.UserMaganement.RemoveUserViewModel
+<script>
+    $('#remove_user_form').on('submit', function (ev) {
+        ev.preventDefault();
+        var form_data = $(this).serializeArray();
+        var url = $(this).attr('action');
+
+        $(this)
+            .parent()
+            .load(url, form_data);
+    });
+    $('.remove_user_close_button').on('click', function (ev) {
+        ev.preventDefault();
+
+        $(this).trigger("remove_user:close");
+    });
+</script>
+<form method="post" asp-controller="User" asp-action="Remove" id="remove_user_form">
+    <div class="card">
+        <div class="card-header">User Details</div>
+        <div class="card-body">
+            <info-message />
+            <div class="form-group">
+                <input type="hidden" asp-for="UserId">
+                <label asp-for="Email" class="col-form-label col-md-4"></label>
+                <p class="form-control-plaintext col-md-8">@Model.Email</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-form-label col-md-4"></label>
+                <p class="form-control-plaintext col-md-8">@Model.FirstName</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="col-form-label col-md-4"></label>
+                <p class="form-control-plaintext col-md-8">@Model.Surname</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsLocked" class="col-form-label col-md-4"></label>
+                <p class="form-control-plaintext col-md-8">@(Model.IsLocked ? "Yes" : "No")</p>
+            </div>
+            <div class="form-group">
+                <div class="float-right">
+                @if (!Model.IsPosted)
+                {
+                    <button type="submit" class="btn btn-primary" value="edit" id="remove">Remove</button>
+                }
+                <a asp-controller="Users" asp-action="Index" class="btn btn-danger remove_user_close_button">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

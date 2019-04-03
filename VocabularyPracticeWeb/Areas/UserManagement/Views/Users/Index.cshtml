@@ -1,0 +1,119 @@
+﻿@model VocabularyPracticeWeb.Models.UserMaganement.UsersViewModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h2>Users</h2>
+<div class="container">
+    <form asp-controller="Users" asp-action="Index" method="get">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input class="form-control" type="text" asp-for="@Model.Search.FirstName"
+                                           name="FirstName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" type="text" asp-for="@Model.Search.Email"
+                                           name="Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Surname</label>
+                                    <input class="form-control" type="text" asp-for="@Model.Search.Surname"
+                                           name="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <label>Roles</label>
+                                    <select class="form-control" asp-items="@Model.Roles" asp-for="@Model.Search.Role"
+                                            name="Role"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive mt-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Login</th>
+                    <th>FirstName</th>
+                    <th>Surname</th>
+                    <th>Locked</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Users.Count(); i++) {
+                    <tr>
+                        <td>
+                            <input asp-for="@Model.Users[i].UserId" type="hidden">@Html.DisplayFor(m => Model.Users[i].Email)
+                        </td>
+                        <td>@Html.DisplayFor(m => Model.Users[i].FirstName)</td>
+                        <td>@Html.DisplayFor(m => Model.Users[i].Surname)</td>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <label class="custom-control-label"></label>
+                                <input type="checkbox" asp-for="@Model.Users[i].IsLocked" disabled="disabled" class="custom-control-input">
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-controller="User" asp-action="Edit" asp-route-userid="@Model.Users[i].UserId" class="dialog">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-controller="User" asp-action="Remove" asp-route-userid="@Model.Users[i].UserId" class="dialog">Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="modal_body">
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        $(document).ready(function () {
+            $('a.dialog').click(function () {
+                var url = $(this).attr('href');
+                var dialog = $('#modal_body');
+                dialog.load(url /*+ ' .body-content'*/, null, function (response, status, http) {
+                    $('.modal').modal('show');
+                });
+
+                return false;
+            });
+
+            $('.modal').on("hidden.bs.modal", function () {
+                location.reload();
+            });
+
+            $("[name*='IsLocked']").on('change', function () {
+                let tr = $(this).closest('tr');
+                let isChanged = tr.find("input[name*='IsChanged']");
+                isChanged.val(
+                    isChanged.val() == 'true' ? 'false' : 'true'
+                );
+            });
+
+            $('.modal').on('remove_user:close edit_user:close', function (ev) {
+                $(this).modal('hide');
+            });
+        });
+    </script>

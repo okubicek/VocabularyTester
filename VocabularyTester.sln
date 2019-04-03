@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeWeb", "VocabularyPracticeWeb\VocabularyPracticeWeb.csproj", "{964C1506-DB4B-4C25-99B4-982FAA33712E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{964C1506-DB4B-4C25-99B4-982FAA33712E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964C1506-DB4B-4C25-99B4-982FAA33712E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964C1506-DB4B-4C25-99B4-982FAA33712E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964C1506-DB4B-4C25-99B4-982FAA33712E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8E44C59-01B0-48FE-8C39-C2B0D6BC903E}
+	EndGlobalSection
+EndGlobal

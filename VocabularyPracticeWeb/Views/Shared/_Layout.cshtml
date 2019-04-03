@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VocabularyPracticeWeb</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
+        <div class="container">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                &#x2630;
+            </button> <a asp-area=""
+                         asp-controller="Home" asp-action="Index" class="navbar-brand">VocabularyPracticeWeb</a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav ">
+                    <li class="nav-item">
+                        <a asp-authorize="" asp-area="" asp-controller="Home" asp-action="Index"
+                           class="nav-link">Home</a>
+                    </li>
+                    <li asp-authorize="" asp-policy="IsAdministrator" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                            Users
+                        </a>
+                        <div class="dropdown-menu">
+                            <a asp-area="UserManagement" asp-controller="Users" asp-action="Index" class="dropdown-item">
+                                Management
+                            </a>
+                            <a asp-area="UserManagement" asp-controller="User" asp-action="Register" class="dropdown-item">
+                                Register New
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-area="UserManagement" asp-controller="User" asp-action="Register" class="nav-link">Register</a>
+                        </li>} @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-area="" asp-controller="Authentication"
+                                  asp-action="LogOut" method="post" id="logoutForm" class="ml-auto">
+                                <li>
+                                    <button type="submit" class="btn btn-link nav-item nav-link">Log Out</button>
+                                </li>
+                            </form>}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2018 - VocabularyPracticeWeb</p>
+            </footer>
+        </div>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model VocabularyPracticeWeb.Areas.UserManagement.RegisterUserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Create new user</div>\
+            <div class="card-body">
+                <form asp-route-returnurl="" method="post">
+                    <input asp-for="ReturnUrl" type="hidden" class="form-control">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" type="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Surname"></label>
+                        <input asp-for="Surname" class="form-control">
+                    </div>
+                    <div asp-authorize="" asp-policy="IsAdministrator" class="custom-control custom-checkbox">
+                        <input asp-for="IsAdmin" type="checkbox" class="custom-control-input">
+                        <label asp-for="IsAdmin" class="custom-control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <div class="offset-md-2 col-lg-10">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model VocabularyPracticeWeb.Models.UserMaganement.EditUserViewModel
+
+<script>
+    $('#edit_user_form').on('submit', function (ev) {
+        ev.preventDefault();
+        var form_data = $(this).serializeArray();
+        var url = $(this).attr('action');
+
+        $(this)
+            .parent()
+            .load(url, form_data);
+    });
+    $('.edit_user_close_button').on('click', function (ev) {
+        ev.preventDefault();
+
+        $(this).trigger("edit_user:close");
+    });
+</script>
+        <form method="post" asp-controller="User" asp-action="Edit" id="edit_user_form">
+            <div class="card">
+                <div class="card-header">User Detail</div>
+                <div class="card-body">
+                    <info-message class="random" />
+                        <div class="form-group">
+                            <input type="hidden" asp-for="UserId">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Surname"></label>
+                            <input asp-for="Surname" class="form-control">
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input asp-for="IsLocked" type="checkbox" class="custom-control-input">
+                            <label asp-for="IsLocked" class="custom-control-label"></label>
+                        </div>
+                        <div class="form-group">
+                            <div class="float-right">
+                                @if (!Model.IsPosted)
+                                {
+                                    <button type="button" class="btn btn-primary" value="edit" id="edit">Edit</button>
+                                }
+                                <a asp-controller="Users" asp-action="Index" class="btn btn-danger edit_user_close_button">Back</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </form>
