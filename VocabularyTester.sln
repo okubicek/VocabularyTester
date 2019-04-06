@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeWeb.Tests", "VocabularyPracticeWeb.Tests\VocabularyPracticeWeb.Tests.csproj", "{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeDomain", "VocabularyPractice\VocabularyPracticeDomain.csproj", "{83804F96-CC97-4847-B304-2073D36146A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83804F96-CC97-4847-B304-2073D36146A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83804F96-CC97-4847-B304-2073D36146A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83804F96-CC97-4847-B304-2073D36146A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83804F96-CC97-4847-B304-2073D36146A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
