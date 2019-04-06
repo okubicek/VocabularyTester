@@ -8,7 +8,6 @@ using VocabularyPracticeWeb.Helpers.Extensions;
 using VocabularyPracticeWeb.Models.UserMaganement;
 using VocabularyPracticeWeb.Controllers.Authentication;
 using VocabularyPracticeWeb.Models.Authentication;
-using System.Collections.Generic;
 using Common.Cqrs;
 
 namespace VocabularyPracticeWeb.Areas.UserManagement.Controllers
@@ -21,15 +20,11 @@ namespace VocabularyPracticeWeb.Areas.UserManagement.Controllers
 
 		private UserManager<ApplicationUser> _userManager;
 
-		private IAuthorizationService _authorizationService;
-
 		public UserController(IQuery<ApplicationUser, ApplicationUserQuery> user, 
-			UserManager<ApplicationUser> userManager, 
-			IAuthorizationService authorizationService)
+			UserManager<ApplicationUser> userManager)
 		{
 			_user = user;
 			_userManager = userManager;
-			_authorizationService = authorizationService;
 		}
 
 		[HttpGet]
@@ -164,7 +159,7 @@ namespace VocabularyPracticeWeb.Areas.UserManagement.Controllers
 
 			if (model.IsAdmin && !this.User.IsInRole("admin"))
 			{
-				throw new ApplicationException("Unauthorised Access");
+				throw new UnauthorizedAccessException("Unauthorised attempt to create admin user");
 			}
 
 			await ExecuteIdentityFunction(() => _userManager.CreateAsync(user, model.Password));
