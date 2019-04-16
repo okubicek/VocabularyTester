@@ -2,10 +2,21 @@
 {
     public class Word : EntityBase
     {
+		private Word()
+		{
+		}
+
+		public Word(Language language, string pronoun, string text)
+		{
+			Language = language;
+			Pronoun = pronoun;
+			Text = text;
+		}
+
+		public Language Language { get; set; }
+
 		public string Pronoun { get; set; }
 
-		public string ForeignWord { get; set; }
-
-		public string Translation { get; set; }
+		public string Text { get; set; }
     }
 }

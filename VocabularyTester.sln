@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyPracticeWeb", "Vo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{B640A3D6-0F6E-48B3-AC20-E23335DCEB80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeWeb.Tests", "VocabularyPracticeWeb.Tests\VocabularyPracticeWeb.Tests.csproj", "{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyPracticeWeb.Tests", "VocabularyPracticeWeb.Tests\VocabularyPracticeWeb.Tests.csproj", "{5EDDC7A3-0B47-444E-AA1F-DCC2261123F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeDomain", "VocabularyPractice\VocabularyPracticeDomain.csproj", "{83804F96-CC97-4847-B304-2073D36146A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VocabularyPracticeDomain", "VocabularyPractice\VocabularyPracticeDomain.csproj", "{83804F96-CC97-4847-B304-2073D36146A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VocabularyPracticeEFCoreRepository", "EFCoreRepository\VocabularyPracticeEFCoreRepository.csproj", "{444640B4-9B78-4D22-9213-7216290FE2F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{83804F96-CC97-4847-B304-2073D36146A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83804F96-CC97-4847-B304-2073D36146A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83804F96-CC97-4847-B304-2073D36146A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444640B4-9B78-4D22-9213-7216290FE2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444640B4-9B78-4D22-9213-7216290FE2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444640B4-9B78-4D22-9213-7216290FE2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444640B4-9B78-4D22-9213-7216290FE2F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

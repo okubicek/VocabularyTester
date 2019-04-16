@@ -42,6 +42,8 @@ namespace VocabularyPracticeWeb
 			services.AddDbContext<ApplicationDbContext>
 					(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+			new DomainRepositoryInstaller().Install(services, Configuration, _container);
+
 			services.AddIdentity<ApplicationUser, ApplicationRole>()
 					.AddEntityFrameworkStores<ApplicationDbContext>()
 					.AddDefaultTokenProviders();

@@ -1,13 +1,24 @@
-﻿using System.Collections.Generic;
-using VocabularyPracticeDomain.Vocabulary;
+﻿using VocabularyPracticeDomain.Vocabulary;
 
 namespace VocabularyPracticeDomain.Lessons
 {
-	public class LessonVocabulary : List<Word>
+	public class LessonVocabulary
 	{
-		public LessonVocabulary(IEnumerable<Word> vocabulary)
+		private LessonVocabulary()
 		{
-			this.AddRange(vocabulary);
 		}
+
+		private LessonVocabulary(Lesson lesson, Word nativeWord, Word foreignWord)
+		{
+			Lesson = lesson;
+			NativeWord = nativeWord;
+			ForeignWord = foreignWord;
+		}
+
+		public Lesson Lesson { get; set; }
+
+		public Word NativeWord { get; set; }
+
+		public Word ForeignWord { get; set; }
 	}
 }
