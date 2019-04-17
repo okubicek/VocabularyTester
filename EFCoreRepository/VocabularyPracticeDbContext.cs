@@ -38,6 +38,7 @@ namespace VocabularyPracticeEFCoreRepository
 
 			builder
 				.Entity<Lesson>()
+				.ToTable("Lessons")
 				.HasKey(x => x.Id);
 			builder
 				.Entity<Lesson>()
@@ -60,14 +61,14 @@ namespace VocabularyPracticeEFCoreRepository
 				.HasOne(x => x.NativeWord)
 				.WithMany()
 				.IsRequired().
-				HasForeignKey("NativeLanguageId");
+				HasForeignKey("NativeWordId");
 			builder.Entity<LessonVocabulary>()
 				.HasOne(x => x.ForeignWord)
 				.WithMany()
 				.IsRequired().
-				HasForeignKey("ForeignLanguageId");
+				HasForeignKey("ForeignWordId");
 			builder.Entity<LessonVocabulary>()
-				.HasKey("LessonId", "NativeLanguageId", "ForeignLanguageId");
+				.HasKey("LessonId", "NativeWordId", "ForeignWordId");
 		}
     }
 }

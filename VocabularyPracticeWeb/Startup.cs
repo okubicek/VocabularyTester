@@ -42,8 +42,6 @@ namespace VocabularyPracticeWeb
 			services.AddDbContext<ApplicationDbContext>
 					(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			new DomainRepositoryInstaller().Install(services, Configuration, _container);
-
 			services.AddIdentity<ApplicationUser, ApplicationRole>()
 					.AddEntityFrameworkStores<ApplicationDbContext>()
 					.AddDefaultTokenProviders();
@@ -68,7 +66,10 @@ namespace VocabularyPracticeWeb
 				});
 			});
 
-			_container.Install(new WebInstaller());
+			_container.Install(
+				new DomainRepositoryInstaller(services, Configuration),
+				new WebInstaller()
+			);
 
 			services.AddMvc();
 			services.AddWindsor(_container, x => x.UseEntryAssembly(typeof(HomeController).Assembly));

@@ -1,4 +1,6 @@
-﻿using Castle.Windsor;
+﻿using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,15 +8,25 @@ using VocabularyPracticeEFCoreRepository;
 
 namespace VocabularyPracticeWeb.Bootstrap.Installers
 {
-    public class DomainRepositoryInstaller
+    public class DomainRepositoryInstaller : IWindsorInstaller
     {
-		public void Install(IServiceCollection services, IConfiguration configuration, IWindsorContainer container)
+		private IServiceCollection _services;
+
+		private IConfiguration _configuration;
+
+		public DomainRepositoryInstaller(IServiceCollection services, IConfiguration configuration)
 		{
-			services.AddDbContext<VocabularyPracticeDbContext>(
+			_services = services;
+			_configuration = configuration;
+		}		
+
+		public void Install(IWindsorContainer container, IConfigurationStore store)
+		{
+			_services.AddDbContext<VocabularyPracticeDbContext>(
 					options => options.UseSqlServer(
-							configuration.GetConnectionString("ApplicationConnection"),
+							_configuration.GetConnectionString("ApplicationConnection"),
 							x => x.MigrationsAssembly("VocabularyPracticeEFCoreRepository"))
 			);
 		}
-    }
+	}
 }
