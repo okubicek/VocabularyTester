@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using VocabularyPracticeDomain.Lessons;
 using VocabularyPracticeDomain.Vocabulary;
 
@@ -12,6 +11,8 @@ namespace VocabularyPracticeEFCoreRepository
 		}
 
 		public DbSet<Lesson> Lessons { get; set; }
+
+		public DbSet<Language> Language { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

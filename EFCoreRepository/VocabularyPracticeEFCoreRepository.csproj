@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VocabularyPracticeApplication\VocabularyPracticeApplication.csproj" />
     <ProjectReference Include="..\VocabularyPractice\VocabularyPracticeDomain.csproj" />
   </ItemGroup>
 

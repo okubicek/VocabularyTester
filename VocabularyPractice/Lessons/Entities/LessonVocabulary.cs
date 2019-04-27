@@ -8,7 +8,7 @@ namespace VocabularyPracticeDomain.Lessons
 		{
 		}
 
-		private LessonVocabulary(Lesson lesson, Word nativeWord, Word foreignWord)
+		public LessonVocabulary(Lesson lesson, Word nativeWord, Word foreignWord)
 		{
 			Lesson = lesson;
 			NativeWord = nativeWord;

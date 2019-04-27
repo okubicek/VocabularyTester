@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VocabularyPracticeDomain.Vocabulary;
 
 namespace VocabularyPracticeDomain.Lessons
@@ -9,20 +10,32 @@ namespace VocabularyPracticeDomain.Lessons
 		{
 		}
 
-		public Lesson(string description, Language nativeLanguage, Language foreignLanguage, ICollection<LessonVocabulary> lessonVocabulary)
+		public Lesson(string description, Language nativeLanguage, Language foreignLanguage)
 		{
 			Description = description;
 			NativeLanguage = nativeLanguage;
 			ForeignLanguage = foreignLanguage;
-			LessonVocabulary = lessonVocabulary;
+			LessonVocabulary = new List<LessonVocabulary>();
 		}
 
-		public string Description { get; set; }
+		public string Description { get; private set; }
 
-		public Language NativeLanguage { get; set; }
+		public Language NativeLanguage { get; private set; }
 
-		public Language ForeignLanguage { get; set; }
+		public Language ForeignLanguage { get; private set; }
 
-		public ICollection<LessonVocabulary> LessonVocabulary { get; set; }
+		public ICollection<LessonVocabulary> LessonVocabulary { get; private set; }
+
+		public void AddVocabulary(Word native, Word foreign)
+		{
+			if (native.Language != NativeLanguage || foreign.Language != ForeignLanguage)
+			{
+				throw new ApplicationException("Vocabulary language is not consistent with Lesson language settings");
+			}
+
+			LessonVocabulary.Add(
+					new LessonVocabulary(this, native, foreign)
+			);
+		}
 	}
 }

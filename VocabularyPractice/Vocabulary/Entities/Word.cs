@@ -18,5 +18,5 @@
 		public string Pronoun { get; set; }
 
 		public string Text { get; set; }
-    }
+	}
 }
