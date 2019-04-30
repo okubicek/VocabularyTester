@@ -1,64 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using VocabularyPracticeConsoleApplication;
 
 namespace VocabularyTesterConsoleApplication
 {
 	public class Program
 	{
+		private static int _numberOfQuestionsToAsk = 20;
+
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Enter name of file from which you wish to load questions");
-			var fileName = Console.ReadLine();
-
-			var vocabulary = GetVocabulary(fileName);
-
+			var vocabulary = LoadVocabulary();
 			int correctAnswers = RunTest(vocabulary);
 
-			Console.WriteLine($"{correctAnswers} asnwered correctly. You made {20 - correctAnswers} mistakes. Press any button to end session");
+			Console.WriteLine($"{correctAnswers} asnwered correctly. You made {_numberOfQuestionsToAsk - correctAnswers} mistakes. Press any button to end session");
 			Console.Read();
 		}
 
 		private static int RunTest(List<Word> vocabulary)
 		{
-			var rnd = new Random((int)DateTime.Now.Ticks);
+			var questionGenerator = new QuestionGenerator(vocabulary);
 			var correctAnswers = 0;
 
-			for (int i = 0; i <= 20; i++)
+			for (int i = 0; i <= _numberOfQuestionsToAsk; i++)
 			{
-				var index = rnd.Next(vocabulary.Count() - 1);
+				var wordToAsk = questionGenerator.NextQuestion();
 
-				Console.WriteLine($"Please translate {vocabulary[index].Translation} :");
+				Console.WriteLine($"Please translate {wordToAsk.Translation} :");
 				var answer = Console.ReadLine();
-				if (answer.Equals(vocabulary[index].ForeignWord))
+				if (answer.Equals(wordToAsk.ForeignWord))
 				{
 					Console.WriteLine("Correct");
 					correctAnswers++;
 				}
 				else
 				{
-					Console.WriteLine($"Wrong! Correct answer is {vocabulary[index].ForeignWord}");
+					Console.WriteLine($"Wrong! Correct answer is {wordToAsk.ForeignWord}");
 				}
 			}
 
 			return correctAnswers;
-		}
+		}		
 
-		private static List<Word> GetVocabulary(string fileName)
+		private static List<Word> LoadVocabulary()
 		{
-			var lines = File.ReadAllLines($"..\\..\\..\\..\\..\\Vocabulary\\{fileName}.txt");
-			return lines
-				.Select(x => CreateWord(x))
-				.ToList();
-		}
-
-		private static Word CreateWord(string line)
-		{
-			var components = line.Split("|");
-
-			return new Word(components[1], components[0], components[2]);
+			var loader = new VocabularyLoader();
+			return loader.LoadVocabulary();
 		}
 	}
 }
