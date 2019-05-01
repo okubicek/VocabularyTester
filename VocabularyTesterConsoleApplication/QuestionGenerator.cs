@@ -19,7 +19,7 @@ namespace VocabularyPracticeConsoleApplication
 
 		}
 
-		public Word NextQuestion()
+		public Question NextQuestion()
 		{
 			var index = _randomNumberGenerator.Next(_vocabulary.Count - 1);
 
@@ -30,7 +30,7 @@ namespace VocabularyPracticeConsoleApplication
 			else
 			{
 				_alreadyAsked.Add(index);
-				return _vocabulary[index];
+				return new Question(_vocabulary[index].Translation, _vocabulary[index].ForeignWord);
 			}
 		}
 	}
