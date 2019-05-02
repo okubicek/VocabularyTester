@@ -72,14 +72,16 @@
                     {
                         <li class="nav-item">
                             <a asp-area="UserManagement" asp-controller="User" asp-action="Register" class="nav-link">Register</a>
-                        </li>} @if (User.Identity.IsAuthenticated)
+                        </li>
+                    } @if (User.Identity.IsAuthenticated)
                         {
                             <form asp-area="" asp-controller="Authentication"
                                   asp-action="LogOut" method="post" id="logoutForm" class="ml-auto">
                                 <li>
                                     <button type="submit" class="btn btn-link nav-item nav-link">Log Out</button>
                                 </li>
-                            </form>}
+                            </form>
+                        }
                     </ul>
                 </div>
             </div>

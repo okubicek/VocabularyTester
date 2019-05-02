@@ -1,0 +1,47 @@
+﻿@model VocabularyPracticeWeb.Areas.Lessons.Models.LessonViewPageModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Lesson specification</div>
+            <div class="card-body">
+                <form  asp-controller="Lesson" asp-action="Add" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@Model.LessonName"></label>
+                        <input asp-for="@Model.LessonName" class="form-control" />
+                        <span asp-validation-for="@Model.LessonName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.NativeLanguage"></label>
+                        <select class="form-control"
+                                asp-items="@Model.AvailableLanguages"
+                                asp-for="@Model.NativeLanguage"
+                                name="NativeLanguage"></select>
+                        <span asp-validation-for="@Model.NativeLanguage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.LearnedLanguage"></label>
+                        <select class="form-control"
+                                asp-items="@Model.AvailableLanguages"
+                                asp-for="@Model.LearnedLanguage"
+                                name="LearnedLanguage"></select>
+                        <span asp-validation-for="@Model.LearnedLanguage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.File"></label>
+                        <input asp-for="@Model.File" type="file" class="form-control" />
+                        <span asp-validation-for="@Model.File" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="submit" class="btn btn-primary"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ namespace VocabularyTesterConsoleApplication
 
 			SaveTestResults(testResults);
 
-			Console.WriteLine($"{testResults.AnsweredCorrectly()} asnwered correctly. " +
+			Console.WriteLine($"{ testResults.AnsweredCorrectly() } asnwered correctly. " +
 				$"You made { testResults.AnsweredIncorrectly() } mistakes. " +
 				$"Press any button to end session");
 
@@ -25,7 +25,7 @@ namespace VocabularyTesterConsoleApplication
 		private static TestResults RunTest(List<Word> vocabulary)
 		{
 			var questionGenerator = new QuestionGenerator(vocabulary);
-			var askedQuestions = new TestResults();
+			var results = new TestResults();
 
 			for (int i = 0; i < _numberOfQuestionsToAsk; i++)
 			{
@@ -41,10 +41,10 @@ namespace VocabularyTesterConsoleApplication
 
 				Console.WriteLine(userMessage);
 
-				askedQuestions.AddAnswer(answerResult);
+				results.AddAnswer(answerResult);
 			}
 
-			return askedQuestions;
+			return results;
 		}		
 
 		private static List<Word> LoadVocabulary()

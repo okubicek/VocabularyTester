@@ -16,7 +16,6 @@ namespace VocabularyPracticeConsoleApplication
 			_vocabulary = vocabulary;
 			_alreadyAsked = new HashSet<int>();
 			_randomNumberGenerator = new Random((int)DateTime.Now.Ticks);
-
 		}
 
 		public Question NextQuestion()
@@ -27,11 +26,10 @@ namespace VocabularyPracticeConsoleApplication
 			{
 				return this.NextQuestion();
 			}
-			else
-			{
-				_alreadyAsked.Add(index);
-				return new Question(_vocabulary[index].Translation, _vocabulary[index].ForeignWord);
-			}
+		
+			_alreadyAsked.Add(index);
+
+			return new Question(_vocabulary[index].Translation, _vocabulary[index].ForeignWord);			
 		}
 	}
 }
