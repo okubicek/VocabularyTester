@@ -1,7 +1,6 @@
 ﻿using FluentEmail.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 using VocabularyPracticeWeb.Domain.Users;
 using VocabularyPracticeWeb.Helpers.Extensions;

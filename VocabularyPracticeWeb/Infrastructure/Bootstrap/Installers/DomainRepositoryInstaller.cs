@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VocabularyPracticeEFCoreRepository;
 
-namespace VocabularyPracticeWeb.Bootstrap.Installers
+namespace VocabularyPracticeWeb.Infrastructure.Bootstrap.Installers
 {
     public class DomainRepositoryInstaller : IWindsorInstaller
     {

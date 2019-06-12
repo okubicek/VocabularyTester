@@ -4,7 +4,7 @@ using Castle.Windsor;
 using Common.Cqrs;
 using VocabularyPracticeWeb.Domain.Users;
 
-namespace VocabularyPracticeWeb.Bootstrap.Installers
+namespace VocabularyPracticeWeb.Infrastructure.Bootstrap.Installers
 {
 	public class WebInstaller : IWindsorInstaller
 	{

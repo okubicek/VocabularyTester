@@ -1,4 +1,4 @@
-﻿@model VocabularyPracticeWeb.Areas.Lessons.Models.LessonViewPageModel
+﻿@model VocabularyPracticeWeb.Areas.Lessons.LessonViewPageModel
 @{
     ViewData["Title"] = "Add";
 }
@@ -8,8 +8,9 @@
         <div class="card">
             <div class="card-header">Lesson specification</div>
             <div class="card-body">
-                <form  asp-controller="Lesson" asp-action="Add" enctype="multipart/form-data" method="post">
+                <form  asp-controller="LessonWizard" asp-action="Add" enctype="multipart/form-data" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="@Model.WizardId" type="hidden" />
                     <div class="form-group">
                         <label asp-for="@Model.LessonName"></label>
                         <input asp-for="@Model.LessonName" class="form-control" />

@@ -15,7 +15,7 @@ namespace VocabularyPracticeWeb.Helpers.Validators
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
 			var file = value as IFormFile;
-			if (!file.ContentType.Equals(_contentType))
+			if (file != null && !file.ContentType.Equals(_contentType))
 			{
 				return new ValidationResult("Only text file can be uploaded");
 			}

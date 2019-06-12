@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using VocabularyPracticeWeb.Models.Authentication;
 using Castle.Windsor;
 using Castle.Facilities.AspNetCore;
+using Castle.MicroKernel.Registration;
 using VocabularyPracticeWeb.Controllers;
-using VocabularyPracticeWeb.Bootstrap.Installers;
+using VocabularyPracticeWeb.Infrastructure.Bootstrap.Installers;
 using VocabularyPracticeWeb.Domain.Users;
+using System.Security.Cryptography;
 
 namespace VocabularyPracticeWeb
 {
@@ -68,8 +70,15 @@ namespace VocabularyPracticeWeb
 
 			_container.Install(
 				new DomainRepositoryInstaller(services, Configuration),
-				new WebInstaller()
+				new WebInstaller(),
+				new CouchDbInstaller(Configuration)
 			);
+
+			_container.Register(Component
+				.For<HashAlgorithm>()
+				.ImplementedBy<SHA1CryptoServiceProvider>()
+				.LifeStyle
+				.Pooled);
 
 			services.AddMvc();
 			services.AddWindsor(_container, x => x.UseEntryAssembly(typeof(HomeController).Assembly));

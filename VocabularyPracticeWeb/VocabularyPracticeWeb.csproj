@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ArmChair.Core" Version="0.12.0" />
     <PackageReference Include="Castle.Facilities.AspNetCore" Version="5.0.0" />
     <PackageReference Include="FluentEmail.Smtp" Version="2.5.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.3" />
@@ -21,6 +22,8 @@
     <Folder Include="Areas\UserManagement\Data\" />
     <Folder Include="Areas\UserManagement\Models\" />
     <Folder Include="Areas\UserManagement\Views\" />
+    <Folder Include="Infrastructure\Hashing\" />
+    <Folder Include="Models\Shared\" />
   </ItemGroup>
 
   <ItemGroup>
