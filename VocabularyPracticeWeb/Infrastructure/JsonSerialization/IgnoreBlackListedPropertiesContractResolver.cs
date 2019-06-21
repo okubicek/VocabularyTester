@@ -13,19 +13,20 @@ namespace VocabularyPracticeWeb.Infrastructure.JsonSerialization
 
 		public IgnoreBlacklistedPropertiesContractResolver()
 		{
-			_blacklist.Add(typeof(LessonViewModel), new HashSet<string> { "File" });
+			_blacklist.Add(typeof(LessonViewModel), new HashSet<string> { nameof(LessonViewModel.File) });
 		}
 
 		protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
 		{
 			var property = base.CreateProperty(member, memberSerialization);
 
-			if (_blacklist.ContainsKey(property.DeclaringType) && 
-					_blacklist[property.DeclaringType].Equals(property.PropertyName))
+			if (IsBlackListed(property))
 			{
-				property.ShouldSerialize = x => { return false; };
+				//property.ShouldSerialize = x => { return false; };
+				property.Ignored = true;
 			}
 
+			//allow deserialization for private setters
 			if (!property.Writable)
 			{
 				var propInfo = member as PropertyInfo;
@@ -36,6 +37,17 @@ namespace VocabularyPracticeWeb.Infrastructure.JsonSerialization
 			}
 
 			return property;
+		}
+
+		private bool IsBlackListed(JsonProperty property)
+		{
+			return _blacklist.ContainsKey(property.DeclaringType) &&
+								_blacklist[property.DeclaringType].Contains(property.PropertyName);
+		}
+
+		protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+		{
+			return base.CreateProperties(type, memberSerialization);
 		}
 	}
 }

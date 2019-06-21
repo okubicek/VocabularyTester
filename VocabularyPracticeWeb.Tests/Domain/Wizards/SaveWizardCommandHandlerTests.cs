@@ -40,8 +40,7 @@ namespace VocabularyPracticeWeb.Tests.Domain.Wizards
 			HashAlgorithm = new SHA1CryptoServiceProvider();
 			_underTest = new SaveWizardStepCommandHandler(wizardRepo, HashAlgorithm, saveDocuments, wizardQuery);
 
-			var stepData = new WizardStepData();
-			stepData.AttachData(StepData, Documents);
+			var stepData = WizardStepData.AttachData(StepData, Documents);
 
 			Wizard = _underTest.Execute(new SaveWizardStep
 			{

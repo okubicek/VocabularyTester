@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using VocabularyPracticeWeb.Infrastructure.JsonSerialization;
 
 namespace VocabularyPracticeWeb.Domain.Wizard
 {
@@ -38,8 +38,9 @@ namespace VocabularyPracticeWeb.Domain.Wizard
 
 		public T GetStepData<T>(string stepName) where T : class
 		{
-			var data = GetStep(stepName);
-			return data == null ? null : JsonConvert.DeserializeObject<T>(data.Data);
+			var wizardStep = GetStep(stepName);
+
+			return wizardStep != null ? wizardStep.GetData<T>() : null;
 		}
 
 		private WizardStep GetStep(string stepName)
@@ -75,6 +76,11 @@ namespace VocabularyPracticeWeb.Domain.Wizard
 			public void UpdateData(string seriallisedData)
 			{
 				this.Data = seriallisedData;
+			}
+
+			public T GetData<T>()
+			{
+				return JsonConverter.ConvertToObject<T>(Data);
 			}
 		}
 	}

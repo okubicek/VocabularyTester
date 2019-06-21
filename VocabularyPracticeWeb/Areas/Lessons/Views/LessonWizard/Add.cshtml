@@ -2,7 +2,18 @@
 @{
     ViewData["Title"] = "Add";
 }
-
+<script>
+    $("document").ready(function () {
+        $('.remove-item').on('click', function (ev) {
+            $('#FileName').val('');
+            $('.fileNameBox').remove();
+        });
+        $('#File').on('change', function () {
+            var filename = $('#File').val().split(/(\\|\/)/g).pop();;
+            $('#FileName').val(filename);
+        });
+    });
+</script>
 <div class="row">
     <div class="col-md-6">
         <div class="card">
@@ -36,6 +47,18 @@
                         <label asp-for="@Model.File"></label>
                         <input asp-for="@Model.File" type="file" class="form-control" />
                         <span asp-validation-for="@Model.File" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="@Model.FileName"/>
+                        @if (!string.IsNullOrEmpty(Model.FileName))
+                        {
+                            <ul class="list-group fileNameBox">
+                                <li class="list-group-item">
+                                    <span>@Model.FileName</span>
+                                    <button class="btn btn-default btn-xs pull-right remove-item fa fa-remove" />
+                                </li>
+                            </ul>
+                        }
                     </div>
 
                     <div class="form-group">

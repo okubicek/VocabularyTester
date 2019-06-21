@@ -59,8 +59,7 @@ namespace VocabularyPracticeWeb.Areas.Lessons.Controllers
 						DocumentType.LessonVocabulary)
 				} : null;
 
-				var wizardStepData = new WizardStepData();
-				wizardStepData.AttachData(model, docs);
+				var wizardStepData = WizardStepData.AttachData(model, docs);
 
 				var wizard = _saveWizard.Execute(new SaveWizardStep {
 					Data = wizardStepData,
@@ -79,6 +78,7 @@ namespace VocabularyPracticeWeb.Areas.Lessons.Controllers
 				LearnedLanguage = model.LearnedLanguage,
 				NativeLanguage = model.NativeLanguage,
 				LessonName = model.LessonName,
+				FileName = model.FileName,
 				File = model.File,
 				AvailableLanguages = GetAvailableLanguages().ToSelectListItems(x => x, x => x, x => false, false)
 			});

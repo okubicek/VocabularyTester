@@ -19,7 +19,7 @@ namespace VocabularyPracticeWeb.Domain.Wizard
 
 		public static void AddOrUpdate(this List<WizardStepDocument> wst, IEnumerable<WizardStepDocument> documents)
 		{
-			foreach(var d in documents)
+			foreach (var d in documents)
 			{
 				var existing = wst.FirstOrDefault(x => x.FileName.Equals(d.FileName));
 				if (existing != null)
@@ -33,10 +33,10 @@ namespace VocabularyPracticeWeb.Domain.Wizard
 
 		public static void RemoveDocs(this List<WizardStepDocument> wst, IEnumerable<WizardStepDocument> docsToRemove)
 		{
-			foreach(var doc in docsToRemove.ToList())
+			foreach (var doc in docsToRemove.ToList())
 			{
 				wst.Remove(doc);
-			}			
+			}
 		}
 	}
 }
